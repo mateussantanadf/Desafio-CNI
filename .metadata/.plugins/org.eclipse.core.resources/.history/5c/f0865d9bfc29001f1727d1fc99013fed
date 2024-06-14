@@ -1,0 +1,55 @@
+package com.example.entities;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Hora {
+	
+	private String horaInicio;
+	private String horaTermino;
+	
+	public Hora() {
+		
+	}
+
+	public Hora(String horaInicio, String horaTermino) {
+		super();
+		this.horaInicio = horaInicio;
+		this.horaTermino = horaTermino;
+	}
+
+	public String getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(String horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public String getHoraTermino() {
+		return horaTermino;
+	}
+
+	public void setHoraTermino(String horaTermino) {
+		this.horaTermino = horaTermino;
+	}
+
+	public String calcularDiferencaHoras(String horaInicio, String horaTermino){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        double diferencaHoras = 0.0;
+        try {
+            Date horaIni = sdf.parse(horaInicio);
+            Date horaFim = sdf.parse(horaTermino);
+            
+            double horaI = horaIni.getTime();
+            double horaF = horaFim.getTime(); 
+            
+            diferencaHoras = horaF - horaI;
+
+        } catch(Exception e) {
+        	System.out.println("Error: " + e.getMessage());
+        }
+		return Double.toString(diferencaHoras);
+    }	
+}

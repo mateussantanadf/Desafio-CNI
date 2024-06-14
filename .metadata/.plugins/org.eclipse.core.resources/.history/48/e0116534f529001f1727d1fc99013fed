@@ -1,0 +1,31 @@
+package com.example.entities;
+
+import java.sql.Time;
+
+public class Hora {
+	
+	private Time horaInicio;
+	private Time horaTermino;
+	public Hora() {
+		
+	}
+	public Hora(Time horaInicio, Time horaTermino) {
+		super();
+		this.horaInicio = horaInicio;
+		this.horaTermino = horaTermino;
+	}
+	public Time getHoraInicio() {
+		return horaInicio;
+	}
+	public void setHoraInicio(Time horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+	public Time getHoraTermino() {
+		return horaTermino;
+	}
+	public void setHoraTermino(Time horaTermino) {
+		this.horaTermino = horaTermino;
+	}
+	
+	
+}

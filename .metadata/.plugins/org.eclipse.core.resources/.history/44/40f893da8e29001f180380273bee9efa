@@ -1,0 +1,53 @@
+package com.example.entities;
+
+public class Vendedores {
+	
+	private String nome;
+	private int qtdVendidos;
+	private Double totalVendidos;
+	private Double salario;
+	
+	public Vendedores() {
+		
+	}
+
+	public Vendedores(String nome, int qtdVendidos, Double totalVendidos, Double salario) {
+		super();
+		this.nome = nome;
+		this.qtdVendidos = qtdVendidos;
+		this.totalVendidos = totalVendidos;
+		this.salario = salario;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getQtdVendidos() {
+		return qtdVendidos;
+	}
+
+	public void setQtdVendidos(int qtdVendidos) {
+		this.qtdVendidos = qtdVendidos;
+	}
+
+	public Double getTotalVendidos() {
+		return totalVendidos;
+	}
+
+	public void setTotalVendidos(Double totalVendidos) {
+		this.totalVendidos = totalVendidos;
+	}
+
+	public Double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(Double salario) {
+		this.salario = salario;
+	}
+}

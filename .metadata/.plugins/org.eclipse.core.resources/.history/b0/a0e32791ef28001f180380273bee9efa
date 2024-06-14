@@ -1,0 +1,95 @@
+package com.example.Desafio_1;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.entities.Valores;
+
+public class App {
+
+	public static void main(String[] args) {
+		//Caminho do arquivo
+		String path = ".\\Dados\\in.txt";
+		
+		List<Valores> list = new ArrayList<Valores>();
+		
+		//Iniciando leitura do arquivo
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+			
+			String line = br.readLine();
+			while (line != null) {
+				
+				String[] vect = line.split(",");
+				Double valorA = Double.parseDouble(vect[0]);
+				Double valorB = Double.parseDouble(vect[1]);
+				
+				Valores val = new Valores(valorA, valorB);
+				list.add(val);
+				
+				line = br.readLine();
+			}
+			
+			for(Valores v : list) {
+				System.out.println(v.getValorA() + "," +  v.getValorB());
+			}
+			
+		} catch (IOException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		
+		String pathOut = ".\\Dados\\out.txt";
+		
+		try (PrintWriter pw = new PrintWriter(new File(pathOut))) {
+			
+			pw.println("Valor Origem de A" + "|" +  "Valor Origem de B" + "|" + "Valor Final de A" + "|" + "Valor Final de B");
+			
+			for(Valores v : list) {
+				
+				pw.println(v.getValorA() + "              " +  v.getValorB() + "              " + v.getValorB() + "              " +  v.getValorA());
+			}
+		} 
+		catch (FileNotFoundException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		
+		try {
+			Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/desafioCNI",
+					"postgres", "123");
+			if(conexao != null) {
+				System.out.println("Conectado!");
+				Statement stm = conexao.createStatement();	
+				consultaDados(stm);
+			} else {
+				System.out.println("Conexão falhou!");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	static void consultaDados(Statement stm) {
+		String sql = "select value_a, value_b from valores";
+		try {
+			ResultSet result = stm.executeQuery(sql);
+			while (result.next()) {
+				System.out.println(result.getInt("value_a") + "" + result.getInt("value_b"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

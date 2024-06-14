@@ -1,0 +1,37 @@
+package com.example.entities;
+
+import java.time.LocalTime;
+
+public class Hora {
+	
+	private LocalTime horaInicio;
+	private LocalTime horaTermino;
+	
+	public Hora() {
+		
+	}
+
+	public Hora(LocalTime horaInicio, LocalTime horaTermino) {
+		super();
+		this.horaInicio = horaInicio;
+		this.horaTermino = horaTermino;
+	}
+
+	public LocalTime getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(LocalTime horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public LocalTime getHoraTermino() {
+		return horaTermino;
+	}
+
+	public void setHoraTermino(LocalTime horaTermino) {
+		this.horaTermino = horaTermino;
+	}
+
+		
+}
